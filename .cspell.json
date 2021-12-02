@@ -3,5 +3,12 @@
 	"language": "en",
 	"words": [
 		"Ystorian"
+	],
+	"ignoreWords": [
+		"Ayinde",
+		"Idris",
+		"Lato",
+		"Neue",
+		"Olubisi"
 	]
 }
