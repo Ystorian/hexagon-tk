@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta http-equiv="Content-Security-Policy"
+		content="default-src 'self'; script-src 'sha256-ddPjfKIp8wo7OIA6xlC8nwEOy4IcQ7fSeAstgUVEJbA=' plausible.io; style-src 'unsafe-inline'; connect-src plausible.io" />
+	<title>Ystorian</title>
+	<link rel="icon" type="image/svg+xml" href="/ystorian.svg">
+	<link rel="mask-icon" href="/ystorian.safari-pinned-tab.svg" color="#8533ff">
+	<link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+	<style>
+		:root {
+			--text-color: hsl(264, 100%, 20%);
+			--background-color: hsl(264, 100%, 90%);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--text-color: hsl(264, 100%, 80%);
+				--background-color: hsl(264, 100%, 10%);
+			}
+		}
+
+		html {
+			min-height: calc(100% + env(safe-area-inset-top));
+			padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+			background-color: var(--background-color);
+			background-size: cover;
+			color: var(--text-color);
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			font-family: "Helvetica Neue", "Lato", sans-serif;
+		}
+
+		h1,
+		a {
+			font-weight: 100;
+			font-size: 14vw;
+			color: var(--text-color);
+			text-align: center;
+			text-decoration: none;
+			margin-top: 2vw;
+			margin-bottom: 1vw;
+		}
+
+		.clock {
+			display: inline-block;
+			position: absolute;
+			width: 100%;
+			padding-bottom: 100%;
+			vertical-align: middle;
+			overflow: hidden;
+		}
+
+		.clock-svg {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			left: 10%;
+			width: 80%;
+			height: 20vh;
+			min-height: 50vh;
+			vertical-align: middle;
+		}
+
+		.color-right {
+			fill: hsl(264, 100%, 60%);
+			/* #8533ff */
+		}
+
+		.color-left {
+			fill: hsl(264, 100%, 70%);
+			/* #a366ff */
+		}
+
+		.color-top {
+			fill: hsl(264, 100%, 80%);
+			/* #c299ff */
+		}
+
+		.clock-hands {
+			fill: none;
+			stroke: #ddd;
+			stroke-opacity: 0.8;
+			stroke-linecap: round;
+		}
+
+		.slide {
+			/* Works on in Chromium */
+			transition-duration: 200ms;
+		}
+
+		@font-face {
+			font-family: "Lato";
+			src: url("lato-latin-hairline.woff2") format("woff2");
+		}
+	</style>
+</head>
+
+<body>
+	<h1><a href="https://www.ystorian.com">Ystorian</a></h1>
+	<div class="clock">
+		<svg class="clock-svg" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg"
+			preserveAspectRatio="xMidYMid meet">
+			<g id="logo-hexagon">
+				<path id="left-lozenge" class="color-left"
+					d="M 101.80547,29.922005 3.6107787,200 101.80547,370.07874 200,200 Z" />
+				<path id="top-triangle" class="color-top" d="M 101.80552,29.922035 200,200 298.1949,29.922035 Z" />
+				<path id="right-trapez" class="color-right"
+					d="M 298.1949,29.922035 396.3896,200 298.1949,370.07874 H 101.8055 Z" />
+			</g>
+			<g id="clock-hands" class="clock-hands">
+				<g id="hand-hour" class="slide">
+					<path style="stroke-width:10;" d="M 200,200 V 100" />
+				</g>
+				<g id="hand-minute" class="slide">
+					<path style="stroke-width:5;" d="M 200,200 V 60" />
+				</g>
+				<g id="hand-second" class="slide">
+					<path style="stroke-width:0.5;" d="M 200,200 V 40" />
+				</g>
+			</g>
+		</svg>
+	</div>
+
+	<!-- sha256: ddPjfKIp8wo7OIA6xlC8nwEOy4IcQ7fSeAstgUVEJbA= -->
+	<script>
+		update_clock();
+		setInterval(update_clock.bind(), 1000);
+		function rotate(id, degree) {
+			document.getElementById(id).setAttribute("transform", "rotate(" + degree + " 200 200)")
+		}
+		function update_clock() {
+			var date = new Date();
+			rotate("hand-hour", date.getHours() % 12 * 30 + date.getMinutes() / 2);
+			rotate("hand-minute", date.getMinutes() * 6);
+			rotate("hand-second", date.getSeconds() * 6);
+		};
+	</script>
+	<script defer data-domain="xn--45i.tk" src="https://plausible.io/js/plausible.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{
+	"name": "Ystorian",
+	"icons": [
+		{
+			"src": "/ystorian.svg",
+			"sizes": "196x196",
+			"type": "image/svg+xml",
+			"purpose": "any maskable"
+		}
+	],
+	"theme_color": "hsl(264, 100%, 20%)",
+	"background_color": "hsl(264, 100%, 20%)",
+	"display": "fullscreen"
+}
