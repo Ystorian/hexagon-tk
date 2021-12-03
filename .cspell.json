@@ -9,6 +9,11 @@
 		"Idris",
 		"Lato",
 		"Neue",
-		"Olubisi"
+		"Olubisi",
+		"fontobject",
+		"nosniff",
+		"opentype",
+		"vcard",
+		"xloc"
 	]
 }
