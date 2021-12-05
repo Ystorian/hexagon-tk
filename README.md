@@ -6,12 +6,31 @@ Project stopped since Chrome complains about [⬣.tk](https://⬣.tk) being a po
 * International Domain Names (IDN) with emoji encoded as punny code (⬣.tk is encoded as xn--45i.tk)
 * dotTK (.tk) domains have a bad reputation.
 
+This repository and the site are kept to test various security headers and configurations.
+
+
 ## Content Security Policy (CSP)
-To get the sha256 hash of the script and style, encoded as a base-64 string, select the text between the tags (including tabs and whitespace), copy, and type this command (macOS):
+### Inline script
+To get the sha384 hash of the script and style, encoded as a base-64 string, select the text between the tags (including tabs and whitespace), copy, and type this command (macOS):
 
 ```shell
-pbpaste | openssl sha256 -binary | openssl base64
+pbpaste | openssl sha384 -binary | openssl base64
 ```
+
+### Third party script
+Get the hash:
+```shell
+curl -s https://plausible.io/js/plausible.js | openssl dgst -sha384 -binary | openssl base64
+```
+
+Then add the hash in the script tag:
+```html
+<script ...
+	src="https://plausible.io/js/plausible.js"
+	integrity="sha384-0tX/C66trbqI1ludXxeZmlfZv7n7W+SsSI45FPLHoK49MIpj6t7dyZ7CalV7x2pk"
+	crossorigin="anonymous"></script>
+```
+
 
 ## Sources
 * Font: [Lato](https://www.latofonts.com/lato-free-fonts/) for devices without a thin font like Helvetica Neue.
