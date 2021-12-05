@@ -29,6 +29,9 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 
+# HSTS
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
 # Ask the browser to cache static assets.
 <FilesMatch "\.(json|svg|woff2)$">
 	ExpiresActive		on
