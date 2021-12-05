@@ -24,6 +24,11 @@ Header set Referrer-Policy "same-origin"
 # Remove nearly all permissions.
 Header set Permissions-Policy "fullscreen=self"
 
+# Redirect all traffic to HTTPS.
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
 # Ask the browser to cache static assets.
 <FilesMatch "\.(json|svg|woff2)$">
 	ExpiresActive		on
