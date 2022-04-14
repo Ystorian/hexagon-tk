@@ -7,8 +7,10 @@ AddOutputFilterByType DEFLATE "application/atom+xml" "application/javascript" "a
 Header set X-XSS-Protection "0"
 # And enable CSP instead.
 Header set Content-Security-Policy "default-src 'self';\
-	script-src 'sha384-cA9Bqnlu71+ICTRssZTm9bG79BtUPxa7KIa1gWTHuTJnAbDYvTP9kt9c9CWwvvVf' plausible.io;\
-	style-src 'sha384-CE0g0NoZbGLhbCgYXkXtjo4AktfgMtnD8QO3NGg4nvVPphS6gMZJIaQwqmEjCUhM';\
+	script-src
+		'sha384-cA9Bqnlu71+ICTRssZTm9bG79BtUPxa7KIa1gWTHuTJnAbDYvTP9kt9c9CWwvvVf';\
+		'sha384-jGlDcM8H7SHi1NFpOcMtlFZ9qhagBGVNCtsA9pv7R2dV4g6BP+kYXLiPaRzO5X/3' plausible.io\
+	style-src 'sha384-hTlqS2Z/BusMK4DAJaaz7Mfr6N/KAgM70/jzyvtX+IQzVDHZz9uf+a2xlYnKdSFj';\
 	connect-src plausible.io"
 
 # Defend against hotlinking and MIME confusion attack.
